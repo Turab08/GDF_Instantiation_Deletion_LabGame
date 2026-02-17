@@ -17,10 +17,20 @@ public class SpawningObjects : MonoBehaviour
         Spawn(sphere);
     }
 
+    public void Clear()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
     void Spawn(GameObject obj)
     {
-        objectMaterial.color = new Color(Random.value, Random.value, Random.value);
-        obj.GetComponent<Renderer>().material = objectMaterial;
-        Instantiate(obj, new Vector3(Random.Range(-3, 3), 3, Random.Range(-3, 3)), Quaternion.identity, gameObject.transform);
+        GameObject newObject = Instantiate(obj, new Vector3(Random.Range(-3, 3), 3, Random.Range(-3, 3)), Quaternion.identity, gameObject.transform);
+
+        Color color = new Color(Random.value, Random.value, Random.value);
+        Renderer renderer = newObject.GetComponent<Renderer>();
+        renderer.material.color = color;
     }
 }
