@@ -8,6 +8,8 @@ public class SpawningObjects : MonoBehaviour
     public GameObject cube;
     public GameObject sphere;
 
+    public Material objectMaterial;
+
     public void Cube() {
         Spawn(cube);
     }
@@ -17,6 +19,8 @@ public class SpawningObjects : MonoBehaviour
 
     void Spawn(GameObject obj)
     {
+        objectMaterial.color = new Color(Random.value, Random.value, Random.value);
+        obj.GetComponent<Renderer>().material = objectMaterial;
         Instantiate(obj, new Vector3(Random.Range(-3, 3), 3, Random.Range(-3, 3)), Quaternion.identity, gameObject.transform);
     }
 }
