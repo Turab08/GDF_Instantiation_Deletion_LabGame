@@ -7,6 +7,7 @@ public class SpawningObjects : MonoBehaviour
     [Header("Prefabs")]
     public GameObject cube;
     public GameObject sphere;
+    public GameObject car;
 
     public Material objectMaterial;
 
@@ -15,6 +16,10 @@ public class SpawningObjects : MonoBehaviour
     }
     public void Sphere() {
         Spawn(sphere);
+    }
+    public void Car()
+    {
+        SpawnModel(car);
     }
 
     public void Clear()
@@ -32,5 +37,10 @@ public class SpawningObjects : MonoBehaviour
         Color color = new Color(Random.value, Random.value, Random.value);
         Renderer renderer = newObject.GetComponent<Renderer>();
         renderer.material.color = color;
+    }
+
+    void SpawnModel(GameObject obj)
+    {
+        Instantiate(obj, new Vector3(Random.Range(-3, 3), 3, Random.Range(-3, 3)), Quaternion.identity, gameObject.transform);
     }
 }
